@@ -22,7 +22,7 @@ public class Main {
         List<Sales> salesList = salesService.readValuesFromSales("D:/PrimaSeller/Sales.list.txt");
 
         for (int i = 0; i < booksList.size(); i++) {
-            System.out.println("Result: " + booksList.get(i).getBook_id());
+          //  System.out.println("Result: " + booksList.get(i).getBook_id());
 
         }
     }
