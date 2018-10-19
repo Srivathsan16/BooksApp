@@ -7,10 +7,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BooksService {
-    public  List<Books> readValuesFromTSV(String fileName) throws FileNotFoundException {
+    Map<String,Double> forSalesOnDate = new HashMap<>();
+    public Map<String,Double>  readValuesFromTSV(String fileName) throws FileNotFoundException {
         List<Books> books = new ArrayList<Books>();
         try {
             FileInputStream fstream = new FileInputStream(fileName);
@@ -26,15 +29,17 @@ public class BooksService {
         } catch (java.io.IOException ioe) {
             ioe.printStackTrace();
         }
-        return books;
+        return forSalesOnDate;
     }
 
-    private static Books trimCode(String[] metadata) {
+    private  Books trimCode(String[] metadata) {
         String book_id = metadata[0];
         String book_title = metadata[1];
         String book_author = metadata[2];
         double book_price = Double.parseDouble(metadata[3]);
-
+if(!forSalesOnDate.containsKey(book_id)){
+    forSalesOnDate.put(book_id,book_price);
+}
         return new Books(book_id,book_title,book_author,book_price);
 
     }

@@ -17,8 +17,8 @@ public class Main {
 
         BooksService booksService = new BooksService();
         SalesService salesService = new SalesService();
-        List<Books> booksList = booksService.readValuesFromTSV("D:/PrimaSeller/Books.txt");
-
+        Map<String, Double> booksList = booksService.readValuesFromTSV("D:/PrimaSeller/Books.txt");
+        salesService.getForSalesDate(booksList);
         List<Sales> salesList = salesService.readValuesFromSales("D:/PrimaSeller/Sales.list.txt");
 
         for (int i = 0; i < booksList.size(); i++) {
